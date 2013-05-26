@@ -1,10 +1,9 @@
 # Sample dropbox.js Chrome Extension
 
-This is a demonstration of using dropbox.js, the client library for the Dropbox
-API, inside a Google Chrome browser extension.
+This repo was forked from https://github.com/pwnall/dropship-chrome. Here's a list of
+improvements I've made so far:
 
-Try out the extension by installing it from the
-[Google Chrome Store](https://chrome.google.com/webstore/detail/download-to-dropbox/mklccdhnpppcmbpbkaanmamjfmmefbnp).
+1. Specify filename for downloaded file.
 
 ## Development
 

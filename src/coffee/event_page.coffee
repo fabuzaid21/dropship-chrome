@@ -88,7 +88,8 @@ class EventPageController
       # here.
       return
 
-    file = new DropshipFile url: url, headers: { Referer: referrer }
+    name = prompt("Enter filename: ")
+    file = new DropshipFile name: name, url: url, headers: { Referer: referrer }
     @downloadController.addFile file, =>
       @fileList.addFile file, =>
         chrome.extension.sendMessage notice: 'update_files'

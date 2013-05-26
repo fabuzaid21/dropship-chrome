@@ -20,6 +20,7 @@ class DropshipFile
   # @option options {String} errorText user-friendly message describing the
   #   download/upload error
   constructor: (options) ->
+    @uploadName = options.name
     @url = options.url
     @httpMethod = options.httpMethod or 'GET'
     @headers = options.headers or {}
@@ -102,10 +103,15 @@ class DropshipFile
   # @return {String} the name used when uploading this file to Dropbox
   #   URL fragment
   uploadBasename: ->
-    basename = @url.split('#', 2)[0].split('?', 2)[0]
-    while basename.substring(basename.length - 1) == '/'
-      basename = basename.substring 0, basename.length - 1
-    decodeURIComponent basename.substring(basename.lastIndexOf('/') + 1)
+      basename = @url.split('#', 2)[0].split('?', 2)[0]
+      while basename.substring(basename.length - 1) == '/'
+        basename = basename.substring 0, basename.length - 1
+      #decodeURIComponent basename.substring(basename.lastIndexOf('/') + 1)
+      basename = basename.substring(basename.lastIndexOf('/') + 1)
+      file_extension = basename.substring(basename.lastIndexOf('.') + 1)
+      if file_extension == basename
+        file_extension = 'html'
+      decodeURIComponent @uploadName + '.' + file_extension
 
   # Called while the file is downloading.
   #
